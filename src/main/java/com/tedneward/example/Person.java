@@ -23,7 +23,33 @@ public class Person {
   public int getAge() {
     return age;
   }
-  
+
+  public void setAge(int age) {
+    if(age < 0) {
+      throw new IllegalArgumentException();
+    }
+    this.age = age;
+  }
+
+  public void setName(String name) {
+    if(name == null) {
+      throw new IllegalArgumentException();
+    }
+    this.name = name;
+  }
+
+  public void setSalary(double salary) {
+    this.salary = salary;
+  }
+
+  public void setSsn(String ssn) {
+    this.ssn = ssn;
+  }
+
+  public void setPropertyChangeFired(boolean propertyChangeFired) {
+    this.propertyChangeFired = propertyChangeFired;
+  }
+
   public String getName() {
     return name;
   }
@@ -59,7 +85,7 @@ public class Person {
   }
   
   public boolean equals(Person other) {
-    return (this.name.equals(p.name) && this.age == p.age);
+    return (this.name.equals(other.getName()) && this.age == other.getAge());
   }
 
   public String tostring() {
@@ -76,4 +102,9 @@ public class Person {
   public void removePropertyChangeListener(PropertyChangeListener listener) {
       this.pcs.removePropertyChangeListener(listener);
   }
+
+  private class AgeComparator implements Comparator<Person>(Person other) {
+    return 0;
+  }
+
 }

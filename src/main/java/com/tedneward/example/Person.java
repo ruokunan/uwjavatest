@@ -3,7 +3,7 @@ package com.tedneward.example;
 import java.beans.*;
 import java.util.*;
 
-public class Person {
+public class Person implements Comparable<Person> {
   private int age;
   private String name;
   private double salary;
@@ -31,6 +31,7 @@ public class Person {
     this.age = age;
   }
 
+
   public void setName(String name) {
     if(name == null) {
       throw new IllegalArgumentException();
@@ -49,6 +50,28 @@ public class Person {
   public void setPropertyChangeFired(boolean propertyChangeFired) {
     this.propertyChangeFired = propertyChangeFired;
   }
+
+  @Override
+  public int compareTo(Person o) {
+    if(this.getSalary() > o.getSalary()) {
+      return -1;
+    } else if (this.getSalary() < o.getSalary()) {
+      return  1;
+    } else {
+      return 0;
+    }
+  }
+
+  public static ArrayList<Person> getNewardFamily() {
+    ArrayList<Person> list = new ArrayList<Person>();
+    list.add(new Person("Ted",41,250000.));
+    list.add(new Person("Charlotte",43,150000.));
+    list.add(new Person("Michael",22,10000.));
+    list.add(new Person("Matthew",15,0.));
+    return list;
+  }
+
+
 
   public String getName() {
     return name;
@@ -83,9 +106,25 @@ public class Person {
   public int timeWarp() {
     return age + 10;
   }
-  
-  public boolean equals(Person other) {
-    return (this.name.equals(other.getName()) && this.age == other.getAge());
+
+
+  @Override
+  public boolean equals(Object o) {
+    if (o != null && getClass() == o.getClass()) {
+       Person other = (Person) o;
+       return this.getName().equals(other.getName()) && this.getAge() == other.getAge();
+    } else  {
+       return  false;
+    }
+
+
+  }
+
+  @Override
+  public int hashCode() {
+    int result = age;
+    result = 31 * result + (name != null ? name.hashCode() : 0);
+    return result;
   }
 
   public String tostring() {
@@ -103,8 +142,13 @@ public class Person {
       this.pcs.removePropertyChangeListener(listener);
   }
 
-  private class AgeComparator implements Comparator<Person>(Person other) {
-    return 0;
+
+
+
+  public class AgeComparator implements Comparator<Person>{
+    public int compare(Person p1,Person p2) {
+      return p1.getAge() - p2.getAge();
+    }
   }
 
 }

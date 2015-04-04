@@ -9,11 +9,17 @@ public class Person implements Comparable<Person> {
   private double salary;
   private String ssn;
   private boolean propertyChangeFired = false;
-  
+
+  public static class AgeComparator implements Comparator<Person>{
+    public int compare(Person p1,Person p2) {
+      return p1.getAge() - p2.getAge();
+    }
+  }
+
   public Person() {
     this("", 0, 0.0d);
   }
-  
+
   public Person(String n, int a, double s) {
     name = n;
     age = a;
@@ -43,8 +49,12 @@ public class Person implements Comparable<Person> {
     this.salary = salary;
   }
 
-  public void setSsn(String ssn) {
-    this.ssn = ssn;
+  public void setSsn(String value) {
+    String old = ssn;
+    ssn = value;
+
+    this.pcs.firePropertyChange("ssn", old, value);
+    propertyChangeFired = true;
   }
 
   public void setPropertyChangeFired(boolean propertyChangeFired) {
@@ -76,18 +86,18 @@ public class Person implements Comparable<Person> {
   public String getName() {
     return name;
   }
-  
+
   public double getSalary() {
     return salary;
   }
-  
+
   public String getSSN() {
     return ssn;
   }
   public void setSSN(String value) {
     String old = ssn;
     ssn = value;
-    
+
     this.pcs.firePropertyChange("ssn", old, value);
     propertyChangeFired = true;
   }
@@ -98,11 +108,11 @@ public class Person implements Comparable<Person> {
   public double calculateBonus() {
     return salary * 1.10;
   }
-  
+
   public String becomeJudge() {
     return "The Honorable " + name;
   }
-  
+
   public int timeWarp() {
     return age + 10;
   }
@@ -145,10 +155,6 @@ public class Person implements Comparable<Person> {
 
 
 
-  public class AgeComparator implements Comparator<Person>{
-    public int compare(Person p1,Person p2) {
-      return p1.getAge() - p2.getAge();
-    }
-  }
+
 
 }

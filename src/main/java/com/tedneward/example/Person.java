@@ -142,9 +142,12 @@ public class Person implements Comparable<Person> {
     return result;
   }
 
-  public String tostring() {
-    return "[Person name:" + this.name + " age:" + this.age + " salary:" + this.salary + "]";
+  @Override
+  public String toString() {
+    return new StringBuilder().append("[Person name:").append(getName()).append(" age:").append(getAge()).append(" salary:")
+               .append(getSalary()).append("]").toString();
   }
+
 
   // PropertyChangeListener support; you shouldn't need to change any of
   // these two methods or the field

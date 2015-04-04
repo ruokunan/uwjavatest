@@ -143,7 +143,7 @@ public class Person implements Comparable<Person> {
   }
 
   public String tostring() {
-    return "{{FIXME}}";
+    return "[Person name:" + this.name + " age:" + this.age + " salary:" + this.salary + "]";
   }
 
   // PropertyChangeListener support; you shouldn't need to change any of

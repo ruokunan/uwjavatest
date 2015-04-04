@@ -9,6 +9,7 @@ public class Person implements Comparable<Person> {
   private double salary;
   private String ssn;
   private boolean propertyChangeFired = false;
+  private static int count;
 
   public static class AgeComparator implements Comparator<Person>{
     public int compare(Person p1,Person p2) {
@@ -21,6 +22,9 @@ public class Person implements Comparable<Person> {
   }
 
   public Person(String n, int a, double s) {
+    if(this.getClass() == Person.class) {
+      count++;
+    }
     name = n;
     age = a;
     salary = s;
@@ -58,7 +62,7 @@ public class Person implements Comparable<Person> {
     propertyChangeFired = true;
   }
   public int count() {
-    return 0;
+    return count;
   }
 
 

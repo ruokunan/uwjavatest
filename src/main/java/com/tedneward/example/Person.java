@@ -56,6 +56,10 @@ public class Person implements Comparable<Person> {
     this.pcs.firePropertyChange("ssn", old, value);
     propertyChangeFired = true;
   }
+  public int count() {
+    return 0;
+  }
+
 
   public void setPropertyChangeFired(boolean propertyChangeFired) {
     this.propertyChangeFired = propertyChangeFired;
@@ -101,6 +105,7 @@ public class Person implements Comparable<Person> {
     this.pcs.firePropertyChange("ssn", old, value);
     propertyChangeFired = true;
   }
+
   public boolean getPropertyChangeFired() {
     return propertyChangeFired;
   }

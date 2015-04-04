@@ -12,7 +12,7 @@ public class Person implements Comparable<Person> {
 
   public static class AgeComparator implements Comparator<Person>{
     public int compare(Person p1,Person p2) {
-      return p1.age - p2.age;
+      return p1.getAge() - p2.getAge();
     }
   }
 

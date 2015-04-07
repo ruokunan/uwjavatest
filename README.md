@@ -1,4 +1,6 @@
 # Greetings!
+<strong>This is Info 498C homework</strong>
+
 This exercise is designed to test your ability to compile Java programs, modifying Java source code
 as necessary to make that happen.
 
